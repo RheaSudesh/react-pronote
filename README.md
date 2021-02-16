@@ -1,70 +1,133 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Image description](https://i1.faceprep.in/ProGrad/prograd-logo.png)
 
-## Available Scripts
+# ProGrad Lab | REACT - PRONOTE
 
-In the project directory, you can run:
+## Learning Goals
 
-### `npm start`
+In this exercise, the goal is to learn state and components in react:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- when and how to setup react in your application,
+- learn component and basic state management in react.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting started
 
-### `npm test`
+1. Fork this repo
+2. Clone this repo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Whenever you create a first significant change, you should make your first commit.
 
-### `npm run build`
+3. Follow these [guidelines to add, commit and push changes](https://github.com/FACEPrep-ProGrad/general-guidelines-labs-project-builders.git).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In the end of this document, you will find guidelines on how to submit the exercise.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Introduction
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In this exercise, you will try to work with component and state. 
 
-### `npm run eject`
+create a new react app using the following command
+```
+npx create-react-app pronote
+cd pronote
+```
+Now go to your app.js and remove the unnecessary code. Your app.js should be looking similar to the this.
+```
+import React from 'react';
+import HigherOrderFunctions from './components/hof/HigherOrderFunctions';
+import './App.css';
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+function App() {
+  return (
+    <div className="App">
+ 
+    </div>
+  );
+}
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+export default App;
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Now create a folder called components inside the src folder and create a component called Editor.jsx file. Once you create it you are good to go. Add your component to app.js file.
+**Note: use rcc to generate the code template**.  
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+So let's get started!
+Check below to see the overall output: You will be trying to replicate this
 
-## Learn More
+![Image description](https://i1.faceprep.in/ProGrad/l3-output1.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### PROGRESSION 1 | EDIT EDIT EDITOR
+In this progression your task is to create a component called as Editor.jsx and Editor.css and complete design the component. To add a class selector to your html elements we use className in jsx. 
+There are two parts in your component. On the left side you should define a editor and on the right side you should define your display, Whenever you type on the left side, it get's displayed on the right side. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```Editor.jsx
+// inside the render method
+<div className="container">
+                <div className="input">
+                    <h3>Input</h3>
+                    <textarea className="input-text"/>
+                </div>
+                <div className="output">
+                    <h3>Pro Note</h3>
+                    <div className="output-text"></div>
+                </div>                
+            </div>
+```
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### PROGRESSION 2 | SET IT UP
+In this progression let us define the editor functionality. To do this we need to define a empty value inside the state.
 
-### Analyzing the Bundle Size
+```
+    constructor(props) {
+        super(props);
+        // to bind the method with event handler without (). 
+        this.handleChange = this.handleChange.bind(this);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+        this.state =
+         { 
+            value: ''
+        };
+    }
+```
+**Do not forget to add styles to your Editor.jsx**. To add style create a file called Editor.jsx and write styles to it.
 
-### Making a Progressive Web App
+### PROGRESSION 2 | START TYPING
+We have already defined the state, but it won't work unless we define the event handler right. To do that in react we need to do some minor changes to your render component and also we need to handle the onChange event.
+Check out the below code snippet.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+      <div className="container">
+                <div className="input">
+                    <h3>Input</h3>
+                    <!-- call the handleChanges method in the onChange event and set the default value as empty-->
+                    <textarea className="input-text" onChange={this.handleChange} defaultValue={this.state.value}/>
+                </div>
+                <div className="output">
+                    <h3>Pro Note</h3>
+                    <div className="output-text">{this.state.value}</div>
+                </div>                
+            </div>
+```
+```
+//event handler method to change the state.
+//setState is used to change the state.
+  handleChange(e){
+        this.setState({value: e.target.value});
+    }
+```
+Once you do the above you can see your output.
 
-### Advanced Configuration
+## Submission
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+If you didn't add, commit and push the changes you made, this is the last call. :smile:
 
-### Deployment
+please share your github links with your Mentors. Your Mentor's will check up your work and provide feedback. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Summary
 
-### `npm run build` fails to minify
+If you managed to do it, good job! :trophy:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+We are proud of you!
+
+Happy Coding ProGrad ❤️!
+
